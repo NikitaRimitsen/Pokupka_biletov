@@ -50,9 +50,19 @@ namespace Pokupka_biletov
             {
                 for (int koht = 0; koht < kohad; koht++)
                 {
-                    Console.Write(saal[rida, koht]);
+                    /*if (rida == read && koht == kohad)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }*/
+                    
+                    Console.Write( saal[rida, koht]);
                 }
-                Console.WriteLine();
+                int scetcik = rida;
+                Console.WriteLine($" rida {scetcik + 1}");
             }
         }
         static bool Muuk()
@@ -63,27 +73,39 @@ namespace Pokupka_biletov
             int pileti_koht = int.Parse(Console.ReadLine());
             if (saal[pileti_rida-1,pileti_koht - 1]==0)
             {
+
+                
                 saal[pileti_rida - 1, pileti_koht - 1] = 1;
+                int cifra = saal[pileti_rida - 1, pileti_koht - 1] = 1;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(cifra);
+                Console.ResetColor();
                 return true;
             }
             else 
             {
+                
                 return false;
+                
             }
+
+            
         }
 
         public static void Main(string[] args)
         {
-
+            
             int suurus = Saali_suurus();
             Saali_taitmine(suurus);
             while (true)
             {
                 Saal_ekraanile();
+                
                 bool ost = Muuk();
 
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(ost);
-
+                Console.ResetColor();
             }
 
 
