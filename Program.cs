@@ -46,8 +46,28 @@ namespace Pokupka_biletov
         }
         static void Saal_ekraanile()
         {
+            /*for (int i = 0; i < kohad; i++)
+            {
+                Console.Write($"{i+1}");
+            }
+            Console.WriteLine("\n");*/
+
+            Console.WriteLine("      ");
+            for (int koht = 0; koht < kohad; koht++)
+            {
+                if (koht.ToString().Length == 2)
+                {
+                    Console.Write(" {0}", koht + 1);
+                }
+                else
+                {
+                    Console.Write("  {0}", koht + 1);
+                }
+            }
+            Console.WriteLine("\n");
             for (int rida = 0; rida < read; rida++)
             {
+                Console.Write($"{rida + 1} rida: ");
                 for (int koht = 0; koht < kohad; koht++)
                 {
                     /*if (rida == read && koht == kohad)
@@ -59,19 +79,41 @@ namespace Pokupka_biletov
                         Console.ForegroundColor = ConsoleColor.Red;
                     }*/
                     
-                    Console.Write( saal[rida, koht]);
+                    Console.Write( saal[rida, koht]+ "  ");
                 }
-                int scetcik = rida;
-                Console.WriteLine($" rida {scetcik + 1}");
+
+                Console.WriteLine("");
             }
         }
+
+        static void bot(int mitu)
+        {
+            do
+            {
+
+            } while (true);
+        }
+
         static bool Muuk()
         {
             Console.WriteLine("Rida");
             int pileti_rida = int.Parse(Console.ReadLine());
-            Console.WriteLine("Koht");
-            int pileti_koht = int.Parse(Console.ReadLine());
-            if (saal[pileti_rida-1,pileti_koht - 1]==0)
+
+            Console.WriteLine("Mitu piletid");
+            int mitu = int.Parse(Console.ReadLine());
+            int p = kohad/2;
+
+            if (saal[pileti_rida, p]==0)
+            {
+                Console.WriteLine($"koht {p} on vaba");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"koht {p} on kinni");
+                return false;
+            }
+            /*if (saal[pileti_rida-1,pileti_koht - 1]==0)
             {
 
                 
@@ -87,7 +129,7 @@ namespace Pokupka_biletov
                 
                 return false;
                 
-            }
+            }*/
 
             
         }
@@ -102,7 +144,6 @@ namespace Pokupka_biletov
                 Saal_ekraanile();
                 
                 bool ost = Muuk();
-
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine(ost);
                 Console.ResetColor();
